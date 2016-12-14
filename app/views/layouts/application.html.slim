@@ -1,9 +1,25 @@
 html
 head
   title Tumblr
-  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  = stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700'
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = favicon_link_tag 'favicon.ico'
   = csrf_meta_tags
 
 body
-  = yield
+  #sidebar
+    ul
+      li.category = link_to("Tumblr", root_path)
+      li = link_to("Posts", root_path)
+      li About
+    p.sign_in User Login
+  #main_content
+    #header
+      p Post Feed
+      .buttons
+        button.button = link_to("Make Post", new_post_path)
+        button.button = link_to("Log Out")
+    - flash.each do |name, msg|
+      = content_tag(:div, msg, class: "alert")
+    = yield
