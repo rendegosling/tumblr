@@ -9,7 +9,7 @@
 
 
   p.body
-    = @post.body
+    = sanitize @post.body
 
   #comments
     h2 = "#{@post.comments.count} Comments"
